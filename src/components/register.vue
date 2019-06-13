@@ -1,9 +1,10 @@
 <template>
   <div class="add-user component-container media-padding">
-    <!-- <scroll class="scroll-wrap"> -->
-    <el-form ref="form" :model="form" :rules="rules" label-width="90px">
-      <el-row :gutter="20">
-        <!-- <el-col :md="12" class="maxwidth">
+    <div style="display:none;">
+      <!-- <scroll class="scroll-wrap"> -->
+      <el-form ref="form" :model="form" :rules="rules" label-width="90px">
+        <el-row :gutter="20">
+          <!-- <el-col :md="12" class="maxwidth">
           <el-form-item label="账户名 :" prop="accountName">
             <el-input
               @blur="accountNameBlur"
@@ -12,47 +13,47 @@
               placeholder="账户名"
             ></el-input>
           </el-form-item>
-        </el-col>-->
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="真实姓名 :" prop="trueName">
-            <el-input v-model="form.trueName" :disabled="editDisable || quotaDisable" placeholder="真实姓名"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20">
-        <!-- <el-col :md="12" class="maxwidth">
+          </el-col>-->
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="真实姓名 :" prop="trueName">
+              <el-input v-model="form.trueName" :disabled="editDisable || quotaDisable" placeholder="真实姓名"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <!-- <el-col :md="12" class="maxwidth">
           <el-form-item label="工号 :">
             <el-input v-model="form.userNum" :disabled="quotaDisable" placeholder="工号"></el-input>
           </el-form-item>
-        </el-col>-->
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="性别 :" prop="sex">
-            <el-select
-              v-model="form.sex"
-              :disabled="repeatDisabled || quotaDisable"
-              placeholder="选择性别"
-              style="width:100%;"
-            >
-              <el-option label="男" value="0"></el-option>
-              <el-option label="女" value="1"></el-option>
-            </el-select>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20" v-if="!quotaDisable">
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="身份证号 :">
-            <el-input v-model="form.idCardNum" :disabled="repeatDisabled" placeholder="身份证号"></el-input>
-          </el-form-item>
-        </el-col>
-        <!-- <el-col :md="12" class="maxwidth">
+          </el-col>-->
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="性别 :" prop="sex">
+              <el-select
+                v-model="form.sex"
+                :disabled="repeatDisabled || quotaDisable"
+                placeholder="选择性别"
+                style="width:100%;"
+              >
+                <el-option label="男" value="0"></el-option>
+                <el-option label="女" value="1"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20" v-if="!quotaDisable">
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="身份证号 :">
+              <el-input v-model="form.idCardNum" :disabled="repeatDisabled" placeholder="身份证号"></el-input>
+            </el-form-item>
+          </el-col>
+          <!-- <el-col :md="12" class="maxwidth">
           <el-form-item label="密码 :">
             <el-input v-model="form.password" :disabled="repeatDisabled" placeholder="密码"></el-input>
           </el-form-item>
-        </el-col>-->
-      </el-row>
-      <!-- 保A配额 -->
-      <!-- <el-row v-if="editDisable || quotaDisable" :gutter="20">
+          </el-col>-->
+        </el-row>
+        <!-- 保A配额 -->
+        <!-- <el-row v-if="editDisable || quotaDisable" :gutter="20">
         <el-col :md="12" class="maxwidth">
           <el-form-item label="保A配额 :">
             <el-input v-model="form.baoAquota" placeholder="保A配额"></el-input>
@@ -63,8 +64,8 @@
             <el-input v-model="form.followQuota" placeholder="跟踪配额"></el-input>
           </el-form-item>
         </el-col>
-      </el-row>-->
-      <!-- <el-row :gutter="20" v-if="!quotaDisable">
+        </el-row>-->
+        <!-- <el-row :gutter="20" v-if="!quotaDisable">
         <el-col :md="12" class="maxwidth">
           <el-form-item label="部门 :" prop="dept">
             <select-department
@@ -84,15 +85,15 @@
             </el-select>
           </el-form-item>
         </el-col>
-      </el-row>-->
-      <el-row :gutter="20" v-if="!quotaDisable">
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="手机 :">
-            <el-input v-model="form.phone" :disabled="repeatDisabled" placeholder="手机号"></el-input>
-          </el-form-item>
-        </el-col>
+        </el-row>-->
+        <el-row :gutter="20" v-if="!quotaDisable">
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="手机 :">
+              <el-input v-model="form.phone" :disabled="repeatDisabled" placeholder="手机号"></el-input>
+            </el-form-item>
+          </el-col>
 
-        <!-- <el-col :md="12" class="maxwidth">
+          <!-- <el-col :md="12" class="maxwidth">
           <el-form-item label="职位统称 :" prop="duties">
             <el-select v-model="form.duties" :disabled="repeatDisabled" placeholder="选择职位统称" style="width:100%">
               <el-option label="员工" value="10"></el-option>
@@ -103,73 +104,73 @@
               <el-option label="总经理" value="60"></el-option>
             </el-select>
           </el-form-item>
-        </el-col>-->
-      </el-row>
-      <el-row :gutter="20" v-if="!quotaDisable">
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="Hi号 :">
-            <el-input v-model="form.hi" :disabled="repeatDisabled" placeholder="Hi号"></el-input>
-          </el-form-item>
-        </el-col>
-        <!-- <el-col :md="12" class="maxwidth">
+          </el-col>-->
+        </el-row>
+        <el-row :gutter="20" v-if="!quotaDisable">
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="Hi号 :">
+              <el-input v-model="form.hi" :disabled="repeatDisabled" placeholder="Hi号"></el-input>
+            </el-form-item>
+          </el-col>
+          <!-- <el-col :md="12" class="maxwidth">
           <el-form-item label="座机 :">
             <el-input v-model="form.extention" :disabled="repeatDisabled" placeholder="座机号"></el-input>
           </el-form-item>
-        </el-col>-->
-      </el-row>
-      <el-row :gutter="20" v-if="!quotaDisable">
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="入职日期 :" prop="entryDate">
-            <el-date-picker
-              v-model="form.entryDate"
-              :disabled="repeatDisabled"
-              value-format="yyyy/MM/dd"
-              type="date"
-              placeholder="选择入职日期"
-              style="width:100%"
-            ></el-date-picker>
-          </el-form-item>
-        </el-col>
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="入司日期 :" prop="EX_RSSJ">
-            <el-date-picker
-              v-model="form.EX_RSSJ"
-              :disabled="repeatDisabled"
-              value-format="yyyy/MM/dd"
-              type="date"
-              placeholder="选择入司日期"
-              style="width:100%"
-            ></el-date-picker>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <!-- 转正日期 -->
-      <el-row v-if="editDisable" :gutter="20">
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="转正日期 :">
-            <el-date-picker
-              v-model="form.turnRealDate"
-              value-format="yyyy-MM-dd"
-              type="date"
-              placeholder="选择转正日期"
-              style="width:100%"
-            ></el-date-picker>
-          </el-form-item>
-        </el-col>
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="离职日期 :">
-            <el-date-picker
-              v-model="form.leaveDate"
-              value-format="yyyy-MM-dd"
-              type="date"
-              placeholder="选择离职日期"
-              style="width:100%"
-            ></el-date-picker>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <!-- 合同时间 -->
-      <!-- <el-row v-if="!quotaDisable" :gutter="20">
+          </el-col>-->
+        </el-row>
+        <el-row :gutter="20" v-if="!quotaDisable">
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="入职日期 :" prop="entryDate">
+              <el-date-picker
+                v-model="form.entryDate"
+                :disabled="repeatDisabled"
+                value-format="yyyy/MM/dd"
+                type="date"
+                placeholder="选择入职日期"
+                style="width:100%"
+              ></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="入司日期 :" prop="EX_RSSJ">
+              <el-date-picker
+                v-model="form.EX_RSSJ"
+                :disabled="repeatDisabled"
+                value-format="yyyy/MM/dd"
+                type="date"
+                placeholder="选择入司日期"
+                style="width:100%"
+              ></el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <!-- 转正日期 -->
+        <el-row v-if="editDisable" :gutter="20">
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="转正日期 :">
+              <el-date-picker
+                v-model="form.turnRealDate"
+                value-format="yyyy-MM-dd"
+                type="date"
+                placeholder="选择转正日期"
+                style="width:100%"
+              ></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="离职日期 :">
+              <el-date-picker
+                v-model="form.leaveDate"
+                value-format="yyyy-MM-dd"
+                type="date"
+                placeholder="选择离职日期"
+                style="width:100%"
+              ></el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <!-- 合同时间 -->
+        <!-- <el-row v-if="!quotaDisable" :gutter="20">
         <el-col :md="12" class="maxwidth">
           <el-form-item label="合同开始 :">
             <el-date-picker
@@ -192,8 +193,8 @@
             ></el-date-picker>
           </el-form-item>
         </el-col>
-      </el-row>-->
-      <!-- <el-row :gutter="20" v-if="!quotaDisable">
+        </el-row>-->
+        <!-- <el-row :gutter="20" v-if="!quotaDisable">
         <el-col :md="12" class="maxwidth">
           <el-form-item label="是否允许打电话 :" label-width="135px">
             <el-checkbox @change="canCallChange" v-model="form.canCall" :disabled="repeatDisabled" label="允许打电话" border></el-checkbox>
@@ -212,8 +213,8 @@
             </el-select>
           </el-form-item>
         </el-col>
-      </el-row>-->
-      <!-- <el-row :gutter="20" v-if="!quotaDisable">
+        </el-row>-->
+        <!-- <el-row :gutter="20" v-if="!quotaDisable">
         <el-col :md="12" class="maxwidth">
           <el-form-item label="序列 :">
             <el-select
@@ -234,8 +235,8 @@
             </el-select>
           </el-form-item>
         </el-col>
-      </el-row>-->
-      <!-- <el-row :gutter="20" v-if="!quotaDisable">
+        </el-row>-->
+        <!-- <el-row :gutter="20" v-if="!quotaDisable">
         <el-col :md="12" class="maxwidth">
           <el-form-item label="级别 :" prop="EX_JB">
             <el-select v-model="form.EX_JB" :disabled="repeatDisabled" placeholder="选择级别" style="width:100%;">
@@ -249,20 +250,20 @@
             <el-button @click.native.prevent="selAllotUserDialog = true" type="primary">选择</el-button>
           </el-form-item>
         </el-col>
-      </el-row>-->
-      <el-row :gutter="20" v-if="!quotaDisable">
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="招行卡号 :">
-            <el-input v-model="form.EX_ZHYHK" :disabled="repeatDisabled" placeholder="招行卡号"></el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :md="12" class="maxwidth">
-          <el-form-item label="中行卡号 :">
-            <el-input v-model="form.EX_ZGYHYHK" :disabled="repeatDisabled" placeholder="中银卡号"></el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <!-- <el-row :gutter="20" v-if="!quotaDisable">
+        </el-row>-->
+        <el-row :gutter="20" v-if="!quotaDisable">
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="招行卡号 :">
+              <el-input v-model="form.EX_ZHYHK" :disabled="repeatDisabled" placeholder="招行卡号"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :md="12" class="maxwidth">
+            <el-form-item label="中行卡号 :">
+              <el-input v-model="form.EX_ZGYHYHK" :disabled="repeatDisabled" placeholder="中银卡号"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <!-- <el-row :gutter="20" v-if="!quotaDisable">
         <el-col :md="12" class="maxwidth">
           <el-form-item label="班次 :" prop="classes_id">
             <el-select v-model="form.classes_id" :disabled="repeatDisabled" placeholder="选择班次" style="width:100%">
@@ -282,19 +283,25 @@
             ></el-date-picker>
           </el-form-item>
         </el-col>
-      </el-row>-->
-      <div class="text-right" style="max-width:900px;">
-        <el-button type="primary" @click.native="submit('form')" :disabled="repeatDisabled">提 交</el-button>
-      </div>
-    </el-form>
-    <!-- </scroll> -->
-    <!-- 选择人员弹窗 -->
-    <!-- <el-dialog :append-to-body="true" :visible.sync="selAllotUserDialog" title="选择人员" width="550px">
+        </el-row>-->
+        <div class="text-right" style="max-width:900px;">
+          <el-button type="primary" @click.native="submit('form')" :disabled="repeatDisabled">提 交</el-button>
+        </div>
+      </el-form>
+      <!-- </scroll> -->
+      <!-- 选择人员弹窗 -->
+      <!-- <el-dialog :append-to-body="true" :visible.sync="selAllotUserDialog" title="选择人员" width="550px">
       <select-user :key="key_seluser" @closeDialog="selAllotUserDialog=false" @userId="getAllotUserId"></select-user>
-    </el-dialog>-->
+      </el-dialog>-->
+    </div>
+    <h3>
+      武汉百捷集团股份有限公司
+      <br>员工个人信息表
+    </h3>
+
     <el-form ref="form" :model="form" :rules="rules" label-width="90px">
       <el-tabs :tab-position="'top'" style="height: 200px;">
-        <el-tab-pane label="用户管理">
+        <el-tab-pane label="一、基本信息">
           <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="真实姓名 :" prop="trueName">
@@ -317,7 +324,7 @@
           </el-row>
           <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
-              <el-form-item label="民族 :" prop="sex">
+              <el-form-item label="民族 :" prop="nationality">
                 <el-select
                   v-model="form.nationality"
                   :disabled="repeatDisabled || quotaDisable"
@@ -385,22 +392,746 @@
               </el-form-item>
             </el-col>
             <el-col :md="12" class="maxwidth">
-              <el-form-item label="入职日期 :" prop="entryDate">
+              <el-form-item label="出生日期 :" prop="entryDate">
                 <el-date-picker
                   v-model="form.entryDate"
                   :disabled="repeatDisabled"
                   value-format="yyyy/MM/dd"
                   type="date"
-                  placeholder="选择入职日期"
+                  placeholder="选择出生日期"
                   style="width:100%"
                 ></el-date-picker>
               </el-form-item>
             </el-col>
           </el-row>
+
+          <el-row :gutter="20">
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="政治面貌 :" prop="politicalStatus">
+                <el-select
+                  v-model="form.politicalStatus"
+                  :disabled="repeatDisabled || quotaDisable"
+                  placeholder="政治面貌"
+                  style="width:100%;"
+                  filterable
+                >
+                  <el-option label="群众" value="群众"></el-option>
+                  <el-option label="中共党员" value="中共党员"></el-option>
+                  <el-option label="中共预备党员" value="中共预备党员"></el-option>
+                  <el-option label="共青团员" value="共青团员"></el-option>
+                  <el-option label="民革党员" value="民革党员"></el-option>
+                  <el-option label="民盟盟员" value="民盟盟员"></el-option>
+                  <el-option label="民建会员" value="民建会员"></el-option>
+                  <el-option label="民进会员" value="民进会员"></el-option>
+                  <el-option label="农工党党员" value="农工党党员"></el-option>
+                  <el-option label="致公党党员" value="致公党党员"></el-option>
+                  <el-option label="九三学社社员" value="九三学社社员"></el-option>
+                  <el-option label="台盟盟员" value="台盟盟员"></el-option>
+                  <el-option label="无党派人士" value="无党派人士"></el-option>
+                  <el-option label="其他" value="其他"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="婚姻状况 :" prop="maritalStatus">
+                <el-select
+                  v-model="form.maritalStatus"
+                  :disabled="repeatDisabled || quotaDisable"
+                  placeholder="婚姻状况"
+                  style="width:100%;"
+                  filterable
+                >
+                  <el-option label="已婚" value="已婚"></el-option>
+                  <el-option label="未婚" value="未婚"></el-option>
+                  <el-option label="离异" value="离异"></el-option>
+                  <el-option label="再婚" value="再婚"></el-option>
+                  <el-option label="丧偶" value="丧偶"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row :gutter="20" v-if="!quotaDisable">
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="电子邮箱 :">
+                <el-input v-model="form.email" :disabled="repeatDisabled" placeholder="电子邮箱"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="身份证号 :">
+                <el-input v-model="form.IDNum" :disabled="repeatDisabled" placeholder="身份证号"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row :gutter="20" v-if="!quotaDisable">
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="紧急联系人 :">
+                <el-input v-model="form.emergencyContactPeople " :disabled="repeatDisabled" placeholder="紧急联系人"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="联系人关系 :">
+                <el-input v-model="form.emergencyContactRelation " :disabled="repeatDisabled" placeholder="联系人关系"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20" v-if="!quotaDisable">
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="联系人电话 :">
+                <el-input v-model="form.emergencyContactTel " :disabled="repeatDisabled" placeholder="联系人电话"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="现住地址 :" prop="nowAddress">
+                <el-input v-model="form.nowAddress" :disabled="editDisable || quotaDisable" placeholder="现住地址"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="家庭地址 :" prop="familyAddress">
+                <el-input v-model="form.familyAddress" :disabled="editDisable || quotaDisable" placeholder="家庭地址"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+          <el-row :gutter="20">
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="身份证地址 :" prop="IDCardAddress">
+                <el-input v-model="form.IDCardAddress" :disabled="editDisable || quotaDisable" placeholder="身份证地址"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-tab-pane>
-        <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-        <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-        <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
+        <el-tab-pane label="二、教育经历">
+          <el-timeline>
+            <el-timeline-item
+              v-for="(activity, index) in educationExperience"
+              :key="index"
+              :timestamp="activity.startDate"
+            >
+              <span>
+                {{activity.startDate}}到{{activity.endDate}}
+                <el-divider direction="vertical"></el-divider>
+              </span>
+              <span>学校名称{{activity.schoolName}}</span>
+              <el-button
+                type="primary"
+                icon="el-icon-edit"
+                size="small"
+                @click="editIns(activity, 'educationExperienceIns','showEducationExperienceIns')"
+              ></el-button>
+              <el-button
+                type="primary"
+                icon="el-icon-delete-solid"
+                size="small"
+                @click="delIns(activity, educationExperience)"
+              ></el-button>
+            </el-timeline-item>
+          </el-timeline>
+          <el-button
+            type="primary"
+            icon="el-icon-circle-plus"
+            size="small"
+            v-if="!showEducationExperienceIns"
+            @click="addIns('educationExperienceIns','showEducationExperienceIns')"
+          ></el-button>
+          <!-- <label style="color: #DCDFE6">（请从最高教育经历开始填写）</label> -->
+          <!-- 第一个教育经历 -->
+          <div
+            style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;"
+            v-if="showEducationExperienceIns"
+          >
+            <el-form ref="educationExperienceIns" :model="educationExperienceIns" label-width="90px">
+              <el-row :gutter="20" v-if="!quotaDisable">
+                <el-col :md="12" class="maxwidth">
+                  <el-form-item label="起始日期 :" prop="startDate">
+                    <el-date-picker
+                      v-model="educationExperienceIns.startDate"
+                      :disabled="repeatDisabled"
+                      value-format="yyyy/MM/dd"
+                      type="date"
+                      placeholder="选择起始日期"
+                      style="width:100%"
+                    ></el-date-picker>
+                  </el-form-item>
+                </el-col>
+                <el-col :md="12" class="maxwidth">
+                  <el-form-item label="终止日期 :" prop="endDate">
+                    <el-date-picker
+                      v-model="educationExperienceIns.endDate"
+                      :disabled="repeatDisabled"
+                      value-format="yyyy/MM/dd"
+                      type="date"
+                      placeholder="选择终止日期"
+                      style="width:100%"
+                    ></el-date-picker>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="20">
+                <el-col :md="12" class="maxwidth">
+                  <el-form-item label="学校名称 :" prop="schoolName01">
+                    <el-input
+                      v-model="educationExperienceIns.schoolName"
+                      :disabled="editDisable || quotaDisable"
+                      placeholder="学校名称"
+                    ></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :md="12" class="maxwidth">
+                  <el-form-item label="专业 :" prop="profession01">
+                    <el-input
+                      v-model="educationExperienceIns.profession"
+                      :disabled="editDisable || quotaDisable"
+                      placeholder="学校名称"
+                    ></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="20">
+                <el-col :md="12" class="maxwidth">
+                  <el-form-item label="学历 :" prop="eduBackground01">
+                    <el-input
+                      v-model="educationExperienceIns.eduBackground"
+                      :disabled="editDisable || quotaDisable"
+                      placeholder="学历"
+                    ></el-input>
+                  </el-form-item>
+                </el-col>
+                <el-col :md="12" class="maxwidth">
+                  <el-form-item label="学习性质 :" prop="learningNature01">
+                    <el-input
+                      v-model="educationExperienceIns.learningNature"
+                      :disabled="editDisable || quotaDisable"
+                      placeholder="学校名称"
+                    ></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="20">
+                <el-col :md="12" class="maxwidth">
+                  <el-form-item label="证书或奖励 :" prop="certificatesOrReward01">
+                    <el-input
+                      v-model="educationExperienceIns.certificatesOrReward"
+                      :disabled="editDisable || quotaDisable"
+                      placeholder="学历"
+                    ></el-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+              <el-row :gutter="20">
+                <el-form-item>
+                  <el-button
+                    type="primary"
+                    @click="saveToList(educationExperienceIns, educationExperience, 'showEducationExperienceIns')"
+                  >保存</el-button>
+                </el-form-item>
+              </el-row>
+            </el-form>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="三、培训经历">
+          <label style="color: #DCDFE6">（请从最近培训经历开始填写）</label>
+          <!-- 培训经历01 -->
+          <div style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;">
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="起始日期 :" prop="trainingStartDate01">
+                  <el-date-picker
+                    v-model="form.trainingStartDate"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择起始日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="终止日期 :" prop="trainingEndDate01">
+                  <el-date-picker
+                    v-model="form.trainingEndDate01"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择终止日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="培训机构 :" prop="trainingOrganizationName01">
+                  <el-input
+                    v-model="form.trainingOrganizationName01"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="培训机构"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="培训时长 :" prop="trainingDuration01">
+                  <el-input
+                    v-model="form.trainingDuration01"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="培训时长"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="培训地点:" prop="trainingAddress01">
+                  <el-input v-model="form.trainingAddress01" :disabled="editDisable || quotaDisable" placeholder="培训地点"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="证书名称 :" prop="certificateName01">
+                  <el-input v-model="form.certificateName01" :disabled="editDisable || quotaDisable" placeholder="证书名称"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+
+          <!-- 培训经历02 -->
+          <div style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;">
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="起始日期 :" prop="trainingStartDate01">
+                  <el-date-picker
+                    v-model="form.trainingStartDate"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择起始日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="终止日期 :" prop="trainingEndDate02">
+                  <el-date-picker
+                    v-model="form.trainingEndDate02"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择终止日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="培训机构 :" prop="trainingOrganizationName02">
+                  <el-input
+                    v-model="form.trainingOrganizationName02"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="培训机构"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="培训时长 :" prop="trainingDuration02">
+                  <el-input
+                    v-model="form.trainingDuration02"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="培训时长"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="培训地点:" prop="trainingAddress02">
+                  <el-input v-model="form.trainingAddress02" :disabled="editDisable || quotaDisable" placeholder="培训地点"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="证书名称 :" prop="certificateName02">
+                  <el-input v-model="form.certificateName02" :disabled="editDisable || quotaDisable" placeholder="证书名称"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+        </el-tab-pane>
+
+        <el-tab-pane label="四、工作经历">
+          <label style="color: #DCDFE6">（请从最近工作经历开始填写）</label>
+          <div style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;">
+            <!-- 工作经历01 -->
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="起始日期 :" prop="workStartDate01">
+                  <el-date-picker
+                    v-model="form.workStartDate01"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择起始日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="终止日期 :" prop="workEndDate01">
+                  <el-date-picker
+                    v-model="form.workEndDate01"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择终止日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="公司名称 :" prop="workCompanyName01">
+                  <el-input v-model="form.workCompanyName01" :disabled="editDisable || quotaDisable" placeholder="公司名称"></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作职位 :" prop="workJob01">
+                  <el-input v-model="form.workJob01" :disabled="editDisable || quotaDisable" placeholder="工作职位"></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作内容 :" prop="workContent01">
+                  <el-input v-model="form.workContent01" :disabled="editDisable || quotaDisable" placeholder="工作内容"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="证人+职务" prop="workAttestor01">
+                  <el-input v-model="form.workAttestor01" :disabled="editDisable || quotaDisable" placeholder="证明人+职务"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="证明人电话 :" prop="AttestorTel01">
+                  <el-input v-model="form.AttestorTel01" :disabled="editDisable || quotaDisable" placeholder="证明人电话"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+          <!-- 工作经历02 -->
+          <div style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;">
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="起始日期 :" prop="workStartDate02">
+                  <el-date-picker
+                    v-model="form.workStartDate02"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择起始日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="终止日期 :" prop="workEndDate02">
+                  <el-date-picker
+                    v-model="form.workEndDate02"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择终止日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="公司名称 :" prop="workCompanyName02">
+                  <el-input v-model="form.workCompanyName02" :disabled="editDisable || quotaDisable" placeholder="公司名称"></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作职位 :" prop="workJob02">
+                  <el-input v-model="form.workJob02" :disabled="editDisable || quotaDisable" placeholder="工作职位"></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作内容 :" prop="workContent02">
+                  <el-input v-model="form.workContent02" :disabled="editDisable || quotaDisable" placeholder="工作内容"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="证人+职务" prop="workAttestor02">
+                  <el-input v-model="form.workAttestor02" :disabled="editDisable || quotaDisable" placeholder="证明人+职务"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="证明人电话 :" prop="AttestorTel02">
+                  <el-input v-model="form.AttestorTel02" :disabled="editDisable || quotaDisable" placeholder="证明人电话"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+
+          <div style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;">
+            <!-- 工作经历03 -->
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="起始日期 :" prop="workStartDate03">
+                  <el-date-picker
+                    v-model="form.workStartDate03"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择起始日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="终止日期 :" prop="workEndDate03">
+                  <el-date-picker
+                    v-model="form.workEndDate03"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择终止日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="公司名称 :" prop="workCompanyName03">
+                  <el-input v-model="form.workCompanyName03" :disabled="editDisable || quotaDisable" placeholder="公司名称"></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作职位 :" prop="workJob03">
+                  <el-input v-model="form.workJob03" :disabled="editDisable || quotaDisable" placeholder="工作职位"></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作内容 :" prop="workContent03">
+                  <el-input v-model="form.workContent03" :disabled="editDisable || quotaDisable" placeholder="工作内容"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="证人+职务" prop="workAttestor 03">
+                  <el-input v-model="form.workAttestor03" :disabled="editDisable || quotaDisable" placeholder="证明人+职务"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="证明人电话 :" prop="AttestorTel03">
+                  <el-input v-model="form.AttestorTel03" :disabled="editDisable || quotaDisable" placeholder="证明人电话"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="五、家庭成员">
+          <!-- 家庭成员01 -->
+          <div style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;">
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="成员姓名 :" prop="familyMemberName01">
+                  <el-input
+                    v-model="form.familyMemberName01"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="成员姓名"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="与本人关系 :" prop="RelationshipWithMe01">
+                  <el-input
+                    v-model="form.RelationshipWithMe01"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="与本人关系"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="出生日期 :" prop="familyMemberBorn01">
+                  <el-date-picker
+                    v-model="form.familyMemberBorn01"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择出生日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作单位 :" prop="memberWorkUnit01">
+                  <el-input v-model="form.memberWorkUnit01" :disabled="editDisable || quotaDisable" placeholder="工作单位"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="职务 :" prop="memberJob01">
+                  <el-input v-model="form.memberJob01" :disabled="editDisable || quotaDisable" placeholder="职务"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="联系电话:" prop="memberTel01">
+                  <el-input v-model="form.memberTel01" :disabled="editDisable || quotaDisable" placeholder="培训地点"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+
+          <!-- 家庭成员02 -->
+          <div style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;">
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="成员姓名 :" prop="familyMemberName02">
+                  <el-input
+                    v-model="form.familyMemberName02"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="成员姓名"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="与本人关系 :" prop="RelationshipWithMe02">
+                  <el-input
+                    v-model="form.RelationshipWithMe02"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="与本人关系"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="出生日期 :" prop="familyMemberBorn02">
+                  <el-date-picker
+                    v-model="form.familyMemberBorn02"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择出生日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作单位 :" prop="memberWorkUnit02">
+                  <el-input v-model="form.memberWorkUnit02" :disabled="editDisable || quotaDisable" placeholder="工作单位"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="职务 :" prop="memberJob02">
+                  <el-input v-model="form.memberJob02" :disabled="editDisable || quotaDisable" placeholder="职务"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="联系电话:" prop="memberTel02">
+                  <el-input v-model="form.memberTel02" :disabled="editDisable || quotaDisable" placeholder="培训地点"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+
+          <!-- 家庭成员03 -->
+          <div style="border:1px solid #b1acac; border-radius: 8px; padding: 5px; margin-bottom: 30px;">
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="成员姓名 :" prop="familyMemberName03">
+                  <el-input
+                    v-model="form.familyMemberName03"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="成员姓名"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="与本人关系 :" prop="RelationshipWithMe03">
+                  <el-input
+                    v-model="form.RelationshipWithMe03"
+                    :disabled="editDisable || quotaDisable"
+                    placeholder="与本人关系"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20" v-if="!quotaDisable">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="出生日期 :" prop="familyMemberBorn03">
+                  <el-date-picker
+                    v-model="form.familyMemberBorn03"
+                    :disabled="repeatDisabled"
+                    value-format="yyyy/MM/dd"
+                    type="date"
+                    placeholder="选择出生日期"
+                    style="width:100%"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="工作单位 :" prop="memberWorkUnit03">
+                  <el-input v-model="form.memberWorkUnit03" :disabled="editDisable || quotaDisable" placeholder="工作单位"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="职务 :" prop="memberJob03">
+                  <el-input v-model="form.memberJob03" :disabled="editDisable || quotaDisable" placeholder="职务"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="12" class="maxwidth">
+                <el-form-item label="联系电话:" prop="memberTel03">
+                  <el-input v-model="form.memberTel03" :disabled="editDisable || quotaDisable" placeholder="培训地点"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </div>
+          <div class="text-right" style="max-width:900px; margin-top:20px; margin-bottom:40px">
+            <el-button type="primary" @click.native="submit('form')" :disabled="repeatDisabled">提 交</el-button>
+          </div>
+        </el-tab-pane>
       </el-tabs>
     </el-form>
   </div>
@@ -481,7 +1212,18 @@ export default {
         EX_HTJSRQ: '' // 合同结束日期
       },
       classes: [],
-
+      educationExperienceIns: {
+        startDate: '',
+        endDate: '',
+        schoolName: '',
+        profession: '',
+        eduBackground: '',
+        learningNature: '',
+        certificatesOrReward: '',
+        isEdit: false
+      },
+      educationExperience: [],
+      showEducationExperienceIns: true,
       rules: {
         accountName: [],
         trueName: [],
@@ -576,6 +1318,39 @@ export default {
       } else {
         this.showBaiduisBtn = false
       }
+    },
+    saveToList(ins, insList, showIns) {
+      if (ins.isEdit === true) {
+        let tmp = insList.filter(elem => {
+          return elem.isEdit === true
+        })
+        if (tmp.length === 1) {
+          ins.isEdit = false
+          insList[insList.indexOf(tmp[0])] = ins
+        } else {
+          throw new Error('编辑出错')
+        }
+      } else if (insList.indexOf(ins) === -1) {
+        insList.push(ins)
+      }
+      insList.sort( (ins1, ins2) => {
+        return ins1.startDate - ins2.startDate
+      })
+      this.$set(this, showIns, false)
+      ins = {}
+    },
+    editIns(ins, InsPrototype, showIns) {
+      ins.isEdit = true
+      this.$set(this, InsPrototype, ins)
+      this.$set(this, showIns, true)
+    },
+    addIns(ins, showIns){
+      this.$set(this, ins, {isEdit: false})
+      this.$set(this, showIns, true)
+    },
+    delIns(ins, insList){
+      this.$delete(insList, insList.indexOf(ins))
+      // insList.splice(insList.indexOf(ins), 0)
     },
     // getBaiduID() {
     //   let params = {
