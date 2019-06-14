@@ -527,7 +527,7 @@
                 type="primary"
                 icon="el-icon-delete-solid"
                 size="small"
-                @click="delIns(activity, educationExperience)"
+                @click="delIns(activity, educationExperience,'showEducationExperienceIns')"
               ></el-button>
             </el-timeline-item>
           </el-timeline>
@@ -1320,6 +1320,9 @@ export default {
       }
     },
     saveToList(ins, insList, showIns) {
+      // ins 存储实例
+      // insList 具体存储的数组
+      // showIns 是否展示此窗口
       if (ins.isEdit === true) {
         let tmp = insList.filter(elem => {
           return elem.isEdit === true
@@ -1340,6 +1343,8 @@ export default {
       ins = {}
     },
     editIns(ins, InsPrototype, showIns) {
+      // ins 当前数据
+      // InsPrototype：窗口展现数据
       ins.isEdit = true
       this.$set(this, InsPrototype, ins)
       this.$set(this, showIns, true)
@@ -1348,7 +1353,8 @@ export default {
       this.$set(this, ins, {isEdit: false})
       this.$set(this, showIns, true)
     },
-    delIns(ins, insList){
+    delIns(ins, insList, showIns){
+      this.$set(this, showIns, false)
       this.$delete(insList, insList.indexOf(ins))
       // insList.splice(insList.indexOf(ins), 0)
     },
