@@ -110,6 +110,12 @@
           </el-row>
 
           <el-row :gutter="20">
+            <!-- 籍贯 -->
+            <el-col :md="12" class="maxwidth">
+              <el-form-item label="籍贯 :" prop="ancestralHome">
+                <el-input v-model="form.ancestralHome" placeholder="格式: XX省 XX市 XX区"></el-input>
+              </el-form-item>
+            </el-col>
             <el-col :md="12" class="maxwidth">
               <el-form-item label="政治面貌 :" prop="politicalStatus">
                 <el-select v-model="form.politicalStatus" placeholder="政治面貌" style="width:100%;" filterable>
@@ -130,7 +136,9 @@
                 </el-select>
               </el-form-item>
             </el-col>
+          </el-row>
 
+          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="婚姻状况 :" prop="maritalStatus">
                 <el-select v-model="form.maritalStatus" placeholder="婚姻状况" style="width:100%;" filterable>
@@ -142,59 +150,56 @@
                 </el-select>
               </el-form-item>
             </el-col>
-          </el-row>
-
-          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="联系电话 :" prop="userTel">
                 <el-input v-model="form.userTel" placeholder="联系电话"></el-input>
               </el-form-item>
             </el-col>
+          </el-row>
+
+          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="电子邮箱 :" prop="email">
                 <el-input v-model="form.email" placeholder="电子邮箱"></el-input>
               </el-form-item>
             </el-col>
-          </el-row>
-
-          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="身份证号 :" prop="idCardNum">
                 <el-input v-model="form.idCardNum" placeholder="身份证号"></el-input>
               </el-form-item>
             </el-col>
+          </el-row>
+
+          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="紧急联系人 :" prop="emergencyContactPeople">
                 <el-input v-model="form.emergencyContactPeople " placeholder="紧急联系人"></el-input>
               </el-form-item>
             </el-col>
-          </el-row>
-
-          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="联系人关系 :" prop="emergencyContactRelation">
                 <el-input v-model="form.emergencyContactRelation " placeholder="联系人关系"></el-input>
               </el-form-item>
             </el-col>
+          </el-row>
+          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="联系人电话 :" prop="emergencyContactTel">
                 <el-input v-model="form.emergencyContactTel " placeholder="联系人电话"></el-input>
               </el-form-item>
             </el-col>
-          </el-row>
-          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="现住地址 :" prop="nowAddress">
                 <el-input v-model="form.nowAddress" placeholder="现住地址"></el-input>
               </el-form-item>
             </el-col>
+          </el-row>
+          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="家庭地址 :" prop="familyAddress">
                 <el-input v-model="form.familyAddress" placeholder="家庭地址"></el-input>
               </el-form-item>
             </el-col>
-          </el-row>
-          <el-row :gutter="20">
             <el-col :md="12" class="maxwidth">
               <el-form-item label="身份证地址 :" prop="IDCardAddress">
                 <el-input v-model="form.IDCardAddress" placeholder="身份证地址"></el-input>
@@ -895,6 +900,9 @@ export default {
             trigger: ['blur', 'change']
           }
         ],
+        ancestralHome:[
+           { required: true, message: '请输入出籍贯', trigger: 'blur' }
+        ],
         userBirthDate: [
           { required: true, message: '请输入出生日', trigger: 'blur' }
         ],
@@ -1217,6 +1225,7 @@ export default {
         'nationality',
         'userBirthDate', //出生日
         'entryDate',
+        'ancestralHome',
         'politicalStatus',
         'maritalStatus',
         'email',
