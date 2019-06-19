@@ -835,42 +835,6 @@ export default {
         nowAddress: '', //14
         familyAddress: '', //15
         IDCardAddress: '' //16
-
-        // dept: '',
-        // accountName: '',
-        // trueName: '',
-        // userNum: '',
-        // sex: '',
-        // idCardNum: '',
-        // password: '',
-        // role: '',
-        // roleList: [],
-        // job: '',
-        // jobList: [],
-        // phone: '',
-        // extention: '',
-        // hi: '',
-        // entryDate: '',
-        // EX_RSSJ: '',
-        // canCall: false,
-        // leaveDate: '',
-        // turnRealDate: '',
-        // baoAquota: '',
-        // followQuota: '',
-        // baiduID: '',
-        // EX_ZHYHK: '',
-        // EX_ZGYHYHK: '',
-        // rank: '',
-        // rankList: [],
-        // jbList: [],
-        // inArea: 'HUB027',
-        // inAreaList: [],
-        // duties: '10',
-        // EX_JB: '52441a9f343211e9813e00e066be4061', // 默认员工
-        // superior_name: '',
-        // superior_id: '',
-        // EX_HTKSRQ: '', // 合同开始日期
-        // EX_HTJSRQ: '', // 合同结束日期
       },
       classes: [],
       stepBoxActive: [],
@@ -900,8 +864,8 @@ export default {
             trigger: ['blur', 'change']
           }
         ],
-        ancestralHome:[
-           { required: true, message: '请输入出籍贯', trigger: 'blur' }
+        ancestralHome: [
+          { required: true, message: '请输入出籍贯', trigger: 'blur' }
         ],
         userBirthDate: [
           { required: true, message: '请输入出生日', trigger: 'blur' }
@@ -980,71 +944,6 @@ export default {
     }
   },
   created() {
-    // for (let key in this.rules) {
-    //   if (
-    //     key === 'sex' ||
-    //     key === 'role' ||
-    //     key === 'job' ||
-    //     key === 'duties' ||
-    //     key === 'dept' ||
-    //     key === 'inArea'
-    //   ) {
-    //     this.rules[key].push({
-    //       required: true,
-    //       message: '请选择必选项',
-    //       trigger: 'change'
-    //     })
-    //   } else {
-    //     this.rules[key].push({
-    //       required: true,
-    //       message: '请输入必填项内容',
-    //       trigger: 'blur'
-    //     })
-    //   }
-    // }
-    // this._getRoles()
-    // this._getPositions()
-    // this._getJB()
-    // if (!this.editDisable && !this.quotaDisable) {
-    //   return
-    // }
-    // this.echoDept = this.echoUserInfo.deptfullname
-    // this.key_dept = new Date() + ''
-    // let receiveData = {
-    //   canCall: this.echoUserInfo.dept === '9999' ? true : false, //eslint-disable-line
-    //   baiduID: this.echoUserInfo.bdcall_id,
-    //   accountName: this.echoUserInfo.uname,
-    //   trueName: this.echoUserInfo.true_name,
-    //   userNum: this.echoUserInfo.workid,
-    //   idCardNum: this.echoUserInfo.SFZ,
-    //   password: this.echoUserInfo.pwd, // 新密码
-    //   sex: this.echoUserInfo.sex + '',
-    //   extention: this.echoUserInfo.office_phone,
-    //   phone: this.echoUserInfo.mobile,
-    //   dept: this.echoUserInfo.deptcode,
-    //   job: this.echoUserInfo.position,
-    //   role: this.echoUserInfo.rid,
-    //   followQuota: this.echoUserInfo.max_b,
-    //   baoAquota: this.echoUserInfo.max_a,
-    //   hi: this.echoUserInfo.hi,
-    //   leaveDate: this.timeFormat1(this.echoUserInfo.resignationtime),
-    //   turnRealDate: this.timeFormat1(this.echoUserInfo.turningtime),
-    //   entryDate: this.timeFormat1(this.echoUserInfo.hiredate),
-    //   EX_ZHYHK: this.echoUserInfo.EX_ZHYHK,
-    //   EX_ZGYHYHK: this.echoUserInfo.EX_ZGYHYHK,
-    //   rank: this.echoUserInfo.sequence,
-    //   inArea: this.echoUserInfo.place_id,
-    //   duties:
-    //     this.echoUserInfo.duties == null ? '10' : this.echoUserInfo.duties + '',
-    //   EX_RSSJ: this.echoUserInfo.EX_RSSJ,
-    //   EX_XNRZ: this.echoUserInfo.EX_XNRZ,
-    //   EX_JB: this.echoUserInfo.EX_JB == null ? 4 : this.echoUserInfo.EX_JB,
-    //   superior_id: this.echoUserInfo.superior_id,
-    //   superior_name: this.echoUserInfo.superior_name,
-    //   classes_id: this.echoUserInfo.classes_id
-    // }
-    // this.form = Object.assign({}, this.form, receiveData)
-    // this.getRank(this.form.dept) // 序列回显
   },
   mounted() {
     // this._getInAreaList()
@@ -1092,19 +991,25 @@ export default {
         center: true
       })
         .then(() => {
-          this.$message({
-            type: 'success',
-            message: '提交成功!'
+          this.$post('/Oper.do?AddUser', this._beforeSend()).then(res => {
+            window.console.log(res)
+            // this.$message({
+            //   type: 'success',
+            //   message: '提交成功!'
+            // })
+            if (res.data[0].success) {
+              this.$message({
+                message: '提交成功',
+                type: 'success'
+              })
+              // this.$router.push('/indexPage/userList')
+            } else {
+              this.$message({
+                message: '提交失败',
+                type: 'error'
+              })
+            }
           })
-          window.console.log(this.form)
-          let params = {
-            form: this.form,
-            familyMember: this.familyMember,
-            workExperience: this.workExperience,
-            educationExperience: this.educationExperience,
-            trainingExperience: this.trainingExperience
-          }
-          window.console.log(params)
         })
         .catch(() => {
           this.$message({
@@ -1112,6 +1017,49 @@ export default {
             message: '已取消提交'
           })
         })
+    },
+    _beforeSend() {
+      window.console.log(this.form)
+      let params = {
+        EX_JB: '5230f8f2343211e9813e00e066be4061',
+        EX_RSSJ: null,
+        EX_XNRZ: null,
+        EX_ZGYHYHK: '',
+        EX_ZHYHK: '',
+        SFZ: this.form['idCardNum'],
+        classes_id: '8ce41bfe34e811e9813e00e066be4061',
+        code: '',
+        dept: '',
+        duties: '10',
+        hi: '',
+        hiredate: null,
+        mobile: this.form['userTel'],
+        name: '',
+        phone: '',
+        place_id: 'HUB027',
+        position: 15,
+        pwd: '',
+        role: '16',
+        sequence: '649f19b3c16411e8929700e066be4061',
+        sex: this.form['sex'],
+        superior_id: '',
+        superior_name: '',
+        truename: this.form['trueName'],
+        workid: null
+      }
+      let tmpForm = {}
+      Object.assign(tmpForm, this.form)
+      this.$delete(tmpForm, 'trueName')
+      this.$delete(tmpForm, 'sex')
+      this.$delete(tmpForm, 'userTel')
+      this.$delete(tmpForm, 'idCardNum')
+      params.form = tmpForm
+      params.familyMember = this.familyMember
+      params.workExperience = this.workExperience
+      params.educationExperience = this.educationExperience
+      params.trainingExperience = this.trainingExperience
+      window.console.log(params)
+      return params
     },
     //下一步
     nextStep() {
@@ -1339,81 +1287,6 @@ export default {
       let date = time.getDate()
       return year + '-' + add0(month) + (bool ? '-' + add0(date) : '')
     },
-    // getBaiduID() {
-    //   let params = {
-    //     username: this.echoUserInfo.uname,
-    //     uid: this.echoUserInfo.uid
-    //   }
-    //   this.$post('/User.do?getBdcallId', params).then(res => {
-    //     if (res.data.success === true) {
-    //       this.form.baiduID = res.data.data
-    //     }
-    //   })
-    // },
-    // _getInAreaList() {
-    //   this.$get('/System/setQueryArea.do').then(res => {
-    //     if (res.data.success) {
-    //       this.form.inAreaList = res.data.data
-    //     }
-    //   })
-    // },
-    // upDeptId(id) {
-    //   this.form.dept = id
-    // },
-    // accountNameBlur() {
-    //   if (!this.form.accountName) {
-    //     return
-    //   }
-    //   this.$post('/Oper.do?SearchName', { name: this.form.accountName }).then(
-    //     res => {
-    //       if (res.data.success && res.data.data[0].number >= 1) {
-    //         this.repeatDisabled = true
-    //         this.$message({
-    //           message: '名称重复',
-    //           type: 'error'
-    //         })
-    //       } else {
-    //         this.repeatDisabled = false
-    //       }
-    //     }
-    //   )
-    // },
-    // getRank(dept) {
-    //   // if (!dept) {
-    //   //   this.$message.warning('请先选择部门！')
-    //   //   return
-    //   // }
-    //   this.$post('/Search.do?orgSequence', { deptCode: dept }).then(res => {
-    //     if (res.data.success) {
-    //       this.form.rankList = res.data.data
-    //     }
-    //   })
-    // },
-    // _getJB() {
-    //   getByCode(110).then(res => {
-    //     if (res.data.success) {
-    //       this.form.jbList = res.data.data
-    //     }
-    //   })
-    // },
-    // _getRoles() {
-    //   getRoles().then(res => {
-    //     if (res.data.success) {
-    //       this.form.roleList = res.data.data
-    //     }
-    //   })
-    // },
-    // _getPositions() {
-    //   getByCode(39).then(res => {
-    //     if (res.data.success) {
-    //       this.form.jobList = res.data.data
-    //     }
-    //   })
-    // },
-    // getAllotUserId(id, name) {
-    //   this.form.superior_id = id
-    //   this.form.superior_name = name
-    // },
     submit(formName) {
       let params = {
         dept: this.form.canCall ? '9999' : null,
@@ -1513,15 +1386,7 @@ export default {
         }
       })
     }
-    // _getclasses() {
-    //   this.$post('/classes.do?list').then(res => {
-    //     if (res.data.success) {
-    //       this.classes = res.data.data
-    //     }
-    //   })
-    // },
   }
-  // components: { SelectDepartment, SelectUser }
 }
 </script>
 

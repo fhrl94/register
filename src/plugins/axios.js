@@ -32,8 +32,7 @@ _axios.interceptors.request.use(
     Message.error({
       message: '加载超时'
     })
-    // eslint-disable-next-line no-console
-    console.error(error)
+    window.console.error(error)
     return Promise.reject(error);
   }
 );
@@ -87,8 +86,7 @@ _axios.interceptors.response.use(
     Message.error({
       message: '请求出错或超时！'
     })
-    // eslint-disable-next-line no-console
-    console.error(error)
+    window.console.error(error)
     return Promise.reject(error);
   }
 );
