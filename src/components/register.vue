@@ -1024,26 +1024,26 @@ export default {
         EX_JB: '5230f8f2343211e9813e00e066be4061',
         EX_RSSJ: null,
         EX_XNRZ: null,
-        EX_ZGYHYHK: '',
-        EX_ZHYHK: '',
+        EX_ZGYHYHK: null,
+        EX_ZHYHK: null,
         SFZ: this.form['idCardNum'],
         classes_id: '8ce41bfe34e811e9813e00e066be4061',
-        code: '',
-        dept: '',
+        code: null,
+        dept: null,
         duties: '10',
-        hi: '',
+        hi: null,
         hiredate: null,
         mobile: this.form['userTel'],
-        name: '',
-        phone: '',
+        name: null,
+        phone: null,
         place_id: 'HUB027',
         position: 15,
-        pwd: '',
+        pwd: null,
         role: '16',
         sequence: '649f19b3c16411e8929700e066be4061',
         sex: this.form['sex'],
-        superior_id: '',
-        superior_name: '',
+        superior_id: null,
+        superior_name: null,
         truename: this.form['trueName'],
         workid: null
       }
@@ -1287,105 +1287,6 @@ export default {
       let date = time.getDate()
       return year + '-' + add0(month) + (bool ? '-' + add0(date) : '')
     },
-    submit(formName) {
-      let params = {
-        dept: this.form.canCall ? '9999' : null,
-        name: this.form.accountName, // 账户名
-        truename: this.form.trueName,
-        workid: this.form.userNum, // 工号
-        pwd: this.form.password,
-        sex: this.form.sex, // 0.男 1.女
-        role: this.form.role,
-        mobile: this.form.phone,
-        phone: this.form.extention,
-        code: this.form.dept, // 最下级部门编号
-        position: this.form.job, // 职位
-        hi: this.form.hi, // hi号
-        hiredate: this.form.entryDate, // 入职日期 ,格式需要后台更改，新增页和编辑页不同
-        SFZ: this.form.idCardNum,
-        EX_ZHYHK: this.form.EX_ZHYHK,
-        EX_ZGYHYHK: this.form.EX_ZGYHYHK,
-        sequence: this.form.rank,
-        place_id: this.form.inArea,
-        EX_RSSJ: this.form.EX_RSSJ,
-        EX_XNRZ: this.form.EX_XNRZ,
-        EX_JB: this.form.EX_JB,
-        duties: this.form.duties,
-        superior_id: this.form.superior_id,
-        superior_name: this.form.superior_name,
-        classes_id: this.form.classes_id
-        //新增的提交数据npm
-      }
-      // console.log(params)
-      // return
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          if (!this.editDisable && !this.quotaDisable) {
-            // 新增人员页的提交
-            this.$post('/Oper.do?AddInterview', params)
-              .then(res => {
-                if (res.data[0].success) {
-                  this.$message({
-                    message: '新增成功',
-                    type: 'success'
-                  })
-                  this.$router.push('/indexPage/userList')
-                } else {
-                  this.$message({
-                    message: '新增失败',
-                    type: 'error'
-                  })
-                }
-              })
-              .catch(err => {
-                // eslint-disable-next-line no-console
-                console.log(err)
-              })
-          } else {
-            // 编辑人员和编辑配额的提交
-            let _params = {
-              dept: this.form.canCall ? '9999' : null,
-              resignationtime: this.form.leaveDate,
-              turningtime: this.form.turnRealDate,
-              max_a: this.form.baoAquota,
-              max_b: this.form.followQuota,
-              update_a: this.echoUserInfo.max_a - this.form.baoAquota,
-              update_b: this.echoUserInfo.max_b - this.form.followQuota,
-              bdcall_id: this.form.baiduID,
-              urid: this.echoUserInfo.urid,
-              id: this.echoUserInfo.id,
-              rid: this.form.role,
-              role: this.echoUserInfo.urid
-            }
-            params = Object.assign({}, params, _params)
-            // console.log(params)
-            // return
-            this.$post('/Oper.do?EditInterview', params)
-              .then(res => {
-                if (res.data[0].success) {
-                  this.$message({
-                    message: '更改成功',
-                    type: 'success'
-                  })
-                  // 派发编辑页关闭弹窗事件
-                  this.$emit('closeDialog', false)
-                } else {
-                  this.$message({
-                    message: '更改失败',
-                    type: 'error'
-                  })
-                }
-              })
-              .catch(err => {
-                // eslint-disable-next-line no-console
-                console.log(err)
-              })
-          }
-        } else {
-          return false
-        }
-      })
-    }
   }
 }
 </script>
