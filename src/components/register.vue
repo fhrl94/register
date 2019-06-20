@@ -1126,7 +1126,13 @@ export default {
       this.$set(this, showIns, true)
     },
     addIns(ins, showIns) {
-      if (this.limitList(showIns)) {
+      let listDict = {
+        showEducationExperienceIns: this.educationExperience,
+        showTrainingExperienceIns: this.trainingExperience,
+        showWorkExperienceIns: this.workExperience,
+        showFamilyMemberIns: this.familyMember
+      }
+      if (listDict[showIns].length===0 || this.limitList(showIns)) {
         this.$set(this, ins, { isEdit: false })
         this.$set(this, showIns, true)
       }
@@ -1148,7 +1154,7 @@ export default {
       window.console.log(limitListDict[showIns])
       if (
         limitListDict[showIns][0] <= listDict[showIns].length &&
-        limitListDict[showIns][1] > listDict[showIns].length
+        limitListDict[showIns][1] >= listDict[showIns].length
       ) {
         return true
       } else {
