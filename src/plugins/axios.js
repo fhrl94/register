@@ -114,7 +114,7 @@ Vue.use(Plugin)
 export default Plugin;
 
 // export const uploadUrl = 'http://172.16.11.84:8087/upload/c'
-export const serverUrl = 'http://172.16.11.84:8087/BaiJieOA'
+export const serverUrl = '/BaiJieOA'
 
 const instance = axios.create({
   baseURL: serverUrl,
